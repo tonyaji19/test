@@ -4,6 +4,20 @@ import Link from "next/link";
 import styles from "@/styles/Home.module.css";
 
 export default function Home() {
+  const state = {
+    username: "",
+    password: "",
+  };
+
+  const handleChange = (e) => {
+    setState(e.target.name, e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(state);
+  };
+
   return (
     <>
       <Head>
@@ -13,20 +27,30 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="grid w-1/4 justify-center ">
-          <h1>Login</h1>
+        <form onSubmit={handleSubmit} className="grid w-1/4 justify-center ">
+          <h1 className="text-center p-2">Test login</h1>
           <input
-            className="shadow-md border"
+            className="shadow-md border mb-1 p-1"
             placeholder="username"
-            type="text"
+            name="username"
+            type="username"
+            onChange={handleChange}
           />
           <input
-            className="shadow-md border"
+            className="shadow-md border p-1"
             placeholder="password"
-            type="text"
+            name="password"
+            type="password"
+            onChange={handleChange}
           />
-          <Link href={"/profile"}>login</Link>
-        </div>
+          <Link
+            href={"/profile"}
+            type="submit"
+            className="bg-gray-200 mt-2 p-1"
+          >
+            login
+          </Link>
+        </form>
       </main>
     </>
   );
