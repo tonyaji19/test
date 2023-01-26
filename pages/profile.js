@@ -1,11 +1,23 @@
 import React from "react";
 
-const profile = () => {
-  fetch("https://reqres.in/api/login")
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-
-  return <div>{data && data.map && data.map((datas) => <h1>asd</h1>)}</div>;
+const profile = ({ data }) => {
+  return (
+    <div>
+      {data.data.map((data) => (
+        <tr key={data.id}>
+          <td>{data.name}</td>
+        </tr>
+      ))}
+    </div>
+  );
 };
 
 export default profile;
+
+export async function getServerSideProps() {
+  const res = await fetch("https://reqres.in/api/login");
+  const data = await res.json();
+  return {
+    props: { data },
+  };
+}
