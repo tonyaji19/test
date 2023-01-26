@@ -3,6 +3,7 @@ import React from "react";
 const profile = ({ data }) => {
   return (
     <div>
+      <p>Welcome</p>
       {data.data.map((data) => (
         <tr key={data.id}>
           <td>{data.name}</td>
